@@ -1,0 +1,15 @@
+package kadai2;
+
+public class Main {
+
+	public static void main(String[] args) {
+		int a = 4, b = 2;
+		
+		System.out.println("足し算:"+ (a + b));
+		System.out.println("引き算:"+ (a - b));
+		System.out.println("掛け算:"+ (a * b));
+		System.out.println("割り算:"+ (a / b));
+		
+	}
+
+}
