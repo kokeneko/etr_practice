@@ -12,29 +12,33 @@ public class Main {
     static RegulatedMotor rightMotor  = Motor.B;
     static RegulatedMotor leftMotor  = Motor.C;
 
-    public static void main(String[] args) {
+    public static void main (String[] args) {
         float middleValue = 0.40F;
-        int lowSpeed = 120;
+        int straight = 500;
+        int lowSpeed = 100;
         int highSpeed = 300;
 
-        while( ! touch.isPressed() ){
+        while ( ! touch.isPressed() ) {
+        	 float leftvalue = leftLight.getLight();
+             float rightvalue = rightLight.getLight();
+
         	// 黒&黒
-            if(leftLight.getLight() < middleValue && rightLight.getLight() < middleValue){
+            if (leftvalue < middleValue && rightvalue < middleValue) {
 
             }
             // 黒&白
-            else if(leftLight.getLight() < middleValue && rightLight.getLight() >= middleValue){
-                motorSetSpeed(lowSpeed, highSpeed);
+            else if (leftvalue < middleValue && rightvalue >= middleValue) {
+                motorSetSpeed(100, 550);
                 motorForward();
             }
             // 白&黒
-            else if(leftLight.getLight() >= middleValue && rightLight.getLight() < middleValue){
-                motorSetSpeed(highSpeed, lowSpeed);
+            else if (leftvalue >= middleValue && rightvalue < middleValue) {
+                motorSetSpeed(500, 50);
                 motorForward();
             }
             // 白&白
-            else if(leftLight.getLight() >= middleValue && rightLight.getLight() >= middleValue){
-                motorSetSpeed(highSpeed, highSpeed);
+            else if (leftvalue >= middleValue && rightvalue >= middleValue) {
+                motorSetSpeed(straight, straight);
                 motorForward();
             }
             else {
@@ -44,12 +48,12 @@ public class Main {
     }
 
     // Valueクラスに保存
-    private static void motorSetSpeed(int leftMotorSpeed, int rightMotorSpeed){
+    private static void motorSetSpeed (int leftMotorSpeed, int rightMotorSpeed) {
         leftMotor.setSpeed(leftMotorSpeed);
         rightMotor.setSpeed(rightMotorSpeed);
     }
 
-    private static void motorForward(){
+    private static void motorForward () {
         leftMotor.forward();
         rightMotor.forward();
     }
